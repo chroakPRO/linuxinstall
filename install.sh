@@ -20,7 +20,7 @@ if [[ $install_zsh == "y" || $install_zsh == "Y" ]]; then
 
   # Install oh-my-zsh
   echo "Installing oh-my-zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   # Download zsh config
   echo "Downloading zsh config..."
