@@ -33,7 +33,7 @@ read -p "Do you want to install ripgrep? (y/n): " install_ripgrep
 if [[ $install_ripgrep == "y" || $install_ripgrep == "Y" ]]; then
   if ! command_exists rg; then
     echo "Installing ripgrep..."
-    sudo apt-get install -y ripgrep
+    sudo apt-get update && sudo apt-get install -y ripgrep
   else
     echo "ripgrep is already installed"
   fi
@@ -45,7 +45,7 @@ if [[ $install_nvim == "y" || $install_nvim == "Y" ]]; then
   if ! command_exists nvim; then
     echo "Installing Neovim from source..."
     sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
-    git clone https://github.com/neovim/neovim.git "$HOME/neovim"
+    GIT_TRACE_PACKET=1 GIT_TRACE=1 GIT_CURL_VERBOSE=1 git clone --depth 1 https://github.com/neovim/neovim.git "$HOME/neovim"
     cd "$HOME/neovim" || exit
     make CMAKE_BUILD_TYPE=Release
     sudo make install
@@ -105,7 +105,7 @@ read -p "Do you want to install Node.js, npm, and tldr? (y/n): " install_node
 if [[ $install_node == "y" || $install_node == "Y" ]]; then
   if ! command_exists node; then
     echo "Installing Node.js and npm..."
-    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     sudo apt-get install -y nodejs
   else
     echo "Node.js is already installed"
