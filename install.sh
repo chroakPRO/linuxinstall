@@ -25,7 +25,7 @@ if [[ $install_zsh == "y" || $install_zsh == "Y" ]]; then
   # Download zsh config
   echo "Downloading zsh config..."
   rm -rf "$HOME/.zshconfig"
-  git clone https://github.com/chroakPRO/zshconfig "$HOME/.zshconfig"
+  git clone https://github.com/chroakPRO/zshdot "$HOME/.zshconfig"
 fi
 
 # Step 2: Install ripgrep
@@ -95,9 +95,8 @@ if [[ $install_tmux == "y" || $install_tmux == "Y" ]]; then
 
   # Install oh-my-tmux
   echo "Installing oh-my-tmux..."
-  git clone https://github.com/gpakosz/.tmux.git "$HOME/.tmux"
-  ln -s -f "$HOME/.tmux/.tmux.conf" "$HOME/.tmux.conf"
-  cp "$HOME/.tmux/.tmux.conf.local" "$HOME/.tmux.conf.local"
+  git clone https://github.com/chroakPRO/tmuxdot.git "$HOME/.tmux"
+  cp "$HOME/.tmux/.tmux.conf" "$HOME/.tmux.conf"
 fi
 
 # Step 7: Install Node.js, npm, and tldr
