@@ -16,7 +16,7 @@ if [[ $install_zsh == "y" || $install_zsh == "Y" ]]; then
   fi
 
   # Set zsh as default shell
-  chsh -s $(which zsh)
+  chsh -s "$(which zsh)"
 
   # Install oh-my-zsh
   echo "Installing oh-my-zsh..."
@@ -39,9 +39,19 @@ if [[ $install_ripgrep == "y" || $install_ripgrep == "Y" ]]; then
   fi
 fi
 
-# Step 3: Install Neovim from source and download config
+# Step 3: Install Neovim from source, Lua 5.4, and LuaRocks, then download config
 read -p "Do you want to install Neovim and download the config? (y/n): " install_nvim
 if [[ $install_nvim == "y" || $install_nvim == "Y" ]]; then
+
+  # First, install Lua 5.4 and LuaRocks (needed for Neovim plugins, etc.)
+  if ! command_exists lua; then
+    echo "Installing Lua 5.4 and LuaRocks..."
+    sudo apt-get update
+    sudo apt-get install -y lua5.4 luarocks
+  else
+    echo "Lua is already installed"
+  fi
+
   if ! command_exists nvim; then
     echo "Installing Neovim from source..."
     sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
@@ -113,6 +123,33 @@ if [[ $install_node == "y" || $install_node == "Y" ]]; then
   # Install tldr
   echo "Installing tldr..."
   sudo npm install -g tldr
+fi
+
+# Step 8: Install Miniconda (auto-init conda + auto_activate_base)
+read -p "Do you want to install Miniconda? (y/n): " install_miniconda
+if [[ $install_miniconda == "y" || $install_miniconda == "Y" ]]; then
+  if ! command_exists conda; then
+    echo "Installing Miniconda..."
+    # Download the latest Miniconda installer
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "$HOME/miniconda.sh"
+    # Run the installer silently (-b) and install to ~/miniconda
+    bash "$HOME/miniconda.sh" -b -p "$HOME/miniconda"
+    # Remove the installer
+    rm "$HOME/miniconda.sh"
+
+    echo "Initializing conda for bash and zsh..."
+    # Auto-init conda for bash and zsh
+    "$HOME/miniconda/bin/conda" init bash
+    "$HOME/miniconda/bin/conda" init zsh
+
+    echo "Enabling auto_activate_base..."
+    "$HOME/miniconda/bin/conda" config --set auto_activate_base true
+
+    echo "Miniconda installation complete."
+    echo "Please open a new terminal or run 'source ~/.bashrc' or 'source ~/.zshrc' to start using conda."
+  else
+    echo "A conda-based environment is already installed on this system."
+  fi
 fi
 
 # Done
