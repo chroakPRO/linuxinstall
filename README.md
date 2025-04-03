@@ -1,6 +1,6 @@
 # Linux Install Script
 
-![Banner](Images/banner.png)
+![Banner](Images/banner2.png)
 
 A comprehensive Linux installation script that sets up your system with essential tools and configurations.
 
