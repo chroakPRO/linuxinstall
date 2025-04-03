@@ -7,7 +7,7 @@ A comprehensive Linux installation script that sets up your system with essentia
 ## Quick Install
 
 ```bash
-curl -s https://raw.githubusercontent.com/yourusername/linuxinstall/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/chroakPRO/linuxinstall/main/install.sh | bash
 ```
 
 ## Interactive Installation
@@ -15,7 +15,7 @@ curl -s https://raw.githubusercontent.com/yourusername/linuxinstall/main/install
 For an interactive installation with prompts and options:
 
 ```bash
-curl -s https://raw.githubusercontent.com/yourusername/linuxinstall/main/install.sh | bash -s -- --interactive
+curl -s https://raw.githubusercontent.com/chroakPRO/linuxinstall/main/install.sh | bash -s -- --interactive
 ```
 
 ## Non-Interactive Installation
@@ -23,7 +23,7 @@ curl -s https://raw.githubusercontent.com/yourusername/linuxinstall/main/install
 For a silent installation with default options:
 
 ```bash
-curl -s https://raw.githubusercontent.com/yourusername/linuxinstall/main/install.sh | bash -s -- --non-interactive
+curl -s https://raw.githubusercontent.com/chroakPRO/linuxinstall/main/install.sh | bash -s -- --non-interactive
 ```
 
 ## Options
